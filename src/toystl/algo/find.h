@@ -29,7 +29,7 @@
 namespace toystl {
 
 template<typename InputIterator, typename Tp>
-inline InputIterator find(InputIterator first, InputIterator last, Tp val) {
+inline InputIterator find(InputIterator first, InputIterator last, const Tp& val) {
   while (first != last && !(*first == val)) {
     ++first;
   }
