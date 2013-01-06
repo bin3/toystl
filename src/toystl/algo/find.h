@@ -36,5 +36,35 @@ inline InputIterator find(InputIterator first, InputIterator last, const Tp& val
   return first;
 }
 
+template<typename InputIterator, typename Predicate>
+inline InputIterator find_if(InputIterator first, InputIterator last, Predicate pred) {
+  while (first != last && !pred(*first)) {
+    ++first;
+  }
+  return first;
+}
+
+template<typename InputIterator1, typename InputIterator2>
+inline InputIterator1 find_first_of(InputIterator1 first1, InputIterator1 last1,
+    InputIterator2 first2, InputIterator2 last2) {
+  for ( ; first1 != last1; ++first1) {
+    for (InputIterator2 it = first2; it != last2; ++it) {
+      if (*first1 == *it) return first1;
+    }
+  }
+  return last1;
+}
+
+template<typename InputIterator1, typename InputIterator2, typename BinaryPredicate>
+inline InputIterator1 find_first_of(InputIterator1 first1, InputIterator1 last1,
+    InputIterator2 first2, InputIterator2 last2, BinaryPredicate pred) {
+  for ( ; first1 != last1; ++first1) {
+    for (InputIterator2 it = first2; it != last2; ++it) {
+      if (pred(*first1, *it)) return first1;
+    }
+  }
+  return last1;
+}
+
 } /* namespace toystl */
 #endif /* FIND_H_ */
