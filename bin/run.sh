@@ -10,4 +10,5 @@ fi
 
 cd ../bin
 
-./find_test
+#./find_test
+./sort_test
