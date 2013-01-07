@@ -72,4 +72,19 @@ TEST(Sort, sort_comp) {
     ASSERT_EQ(vec, vec2);
   }
 }
+
+TEST(Sort, nth_element) {
+  for (int n = 1; n <= 100; ++n) {
+    std::vector<int> vec(n);
+    std::vector<int> vec2;
+
+    std::generate(vec.begin(), vec.end(), RandomNumberFunc);
+    int k = std::rand() % n;
+    vec2 = vec;
+    std::nth_element(vec.begin(), vec.begin() + k, vec.end());
+    toystl::nth_element(vec2.begin(), vec2.begin() + k, vec2.end());
+    ASSERT_EQ(vec[k], vec2[k]) << " n=" << n << ", k=" << k;
+  }
+}
+
 } /* namespace toystl */
