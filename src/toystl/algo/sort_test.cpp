@@ -39,7 +39,7 @@ TEST(Sort, sort) {
     std::vector<int> vec(n);
     std::vector<int> vec2;
 
-    std::generate(vec.begin(), vec.end(), RandomNumber);
+    std::generate(vec.begin(), vec.end(), RandomNumberFunc);
     vec2 = vec;
     std::sort(vec.begin(), vec.end());
     toystl::sort(vec2.begin(), vec2.end());
@@ -59,7 +59,7 @@ TEST(Sort, sort_comp) {
     std::vector<int> vec(n);
     std::vector<int> vec2;
 
-    std::generate(vec.begin(), vec.end(), RandomNumber);
+    std::generate(vec.begin(), vec.end(), RandomNumberFunc);
     vec2 = vec;
     std::sort(vec.begin(), vec.end(), comp);
     toystl::sort(vec2.begin(), vec2.end(), comp);

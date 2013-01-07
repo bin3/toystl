@@ -43,4 +43,16 @@ TEST(Modify, random_shuffle) {
 //  EXPECT_EQ(vec, vec2);
 }
 
+TEST(Modify, random_shuffle_rand) {
+  const int N = 10;
+  std::vector<int> vec(N);
+  std::vector<int> vec2;
+  std::generate(vec.begin(), vec.end(), UniqueNumber());
+  vec2 = vec;
+  std::srand(0);
+  std::random_shuffle(vec.begin(), vec.end(), RandomNumberGenerator);
+  std::srand(0);
+  toystl::random_shuffle(vec2.begin(), vec2.end(), RandomNumberGenerator);
+//  EXPECT_EQ(vec, vec2);
+}
 } /* namespace toystl */

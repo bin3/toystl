@@ -31,8 +31,12 @@
 
 namespace toystl {
 
-inline int RandomNumber() {
-  return rand() % 100;
+inline int RandomNumberFunc() {
+  return std::rand() % 100;
+}
+
+inline int RandomNumberGenerator(int n) {
+  return std::rand() % n;
 }
 
 struct UniqueNumber {
@@ -42,6 +46,15 @@ struct UniqueNumber {
   }
 private:
   int current_;
+};
+
+struct RandomNumber {
+  RandomNumber(int n = 100): n_(n) {}
+  int operator()() {
+    return std::rand() % n_;
+  }
+private:
+  int n_;
 };
 
 } /* namespace toystl */

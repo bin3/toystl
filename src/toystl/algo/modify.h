@@ -40,5 +40,13 @@ void random_shuffle(RandomAccessIterator first, RandomAccessIterator last) {
   }
 }
 
+template<typename RandomAccessIterator, typename RandomNumberGenerator>
+void random_shuffle(RandomAccessIterator first, RandomAccessIterator last,
+    RandomNumberGenerator rand) {
+  typename toystl::iterator_traits<RandomAccessIterator>::difference_type n = last - first;
+  for (RandomAccessIterator it = first; it != last; ++it, --n) {
+    std::iter_swap(it, it + rand(n));
+  }
+}
 } /* namespace toystl */
 #endif /* MODIFY_H_ */
