@@ -87,4 +87,19 @@ TEST(Sort, nth_element) {
   }
 }
 
+TEST(Sort, partial_sort) {
+  for (int n = 1; n <= 100; ++n) {
+    std::vector<int> vec(n);
+    std::vector<int> vec2;
+
+    std::generate(vec.begin(), vec.end(), RandomNumberFunc);
+    vec2 = vec;
+    int k = std::rand() % n;
+    vec2 = vec;
+    std::partial_sort(vec.begin(), vec.begin() + k, vec.end());
+    toystl::partial_sort(vec2.begin(), vec2.begin() + k, vec2.end());
+    ASSERT_EQ(std::vector<int>(vec.begin(), vec.begin() + k),
+        std::vector<int>(vec2.begin(), vec2.begin() + k)) << " n=" << n << ", k=" << k;
+  }
+}
 } /* namespace toystl */

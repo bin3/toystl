@@ -76,9 +76,7 @@ inline void sort(RandomAccessIterator first, RandomAccessIterator last) {
 }
 
 inline void stable_sort() {}
-inline void partial_sort() {}
 inline void partial_sort_copy() {}
-inline void nth_element() {}
 
 template<typename RandomAccessIterator>
 inline void nth_element(RandomAccessIterator first, RandomAccessIterator nth,
@@ -100,6 +98,31 @@ inline void nth_element(RandomAccessIterator first, RandomAccessIterator nth,
   }
   if (nth < eit + 1) toystl::nth_element(first, nth, eit + 1);
   else if (bit <= nth) toystl::nth_element(bit, nth, last);
+}
+
+template<typename RandomAccessIterator>
+inline void partial_sort(RandomAccessIterator first, RandomAccessIterator middle,
+    RandomAccessIterator last) {
+  typename toystl::iterator_traits<RandomAccessIterator>::difference_type count = last - first;
+  typename toystl::iterator_traits<RandomAccessIterator>::value_type pivot = *(first + (count >> 1));
+  RandomAccessIterator bit = first;
+  RandomAccessIterator eit = last - 1;
+  while (bit <= eit) {
+    while (*bit < pivot)
+      ++bit;
+    while (pivot < *eit)
+      --eit;
+    if (bit <= eit) {
+      std::iter_swap(bit, eit);
+      ++bit;
+      --eit;
+    }
+  }
+  if (middle < eit + 1) toystl::partial_sort(first, middle, eit + 1);
+  else {
+    toystl::sort(first, eit + 1);
+    if (bit <= middle) toystl::partial_sort(bit, middle, last);
+  }
 }
 
 } /* namespace toystl */
