@@ -30,20 +30,9 @@
 #include <vector>
 #include <algorithm>
 
+#include "util.h"
+
 namespace toystl {
-
-int RandomNumber() {
-  return rand() % 100;
-}
-
-struct UniqueNumber {
-  UniqueNumber(): current_(0) {}
-  int operator()() {
-    return current_++;
-  }
-private:
-  int current_;
-};
 
 TEST(Sort, sort) {
   for (int n = 0; n <= 100; ++n) {
