@@ -26,10 +26,19 @@
 #ifndef MODIFY_H_
 #define MODIFY_H_
 
+#include <cstdlib>
+#include <algorithm>
+#include <toystl/iterator_base_types.h>
+
 namespace toystl {
 
 template<typename RandomAccessIterator>
-void random_shuffle(RandomAccessIterator first, RandomAccessIterator last) {}
+void random_shuffle(RandomAccessIterator first, RandomAccessIterator last) {
+  typename toystl::iterator_traits<RandomAccessIterator>::difference_type n = last - first;
+  for (RandomAccessIterator it = first; it != last; ++it, --n) {
+    std::iter_swap(it, it + std::rand() % n);
+  }
+}
 
 } /* namespace toystl */
 #endif /* MODIFY_H_ */

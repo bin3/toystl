@@ -26,10 +26,21 @@
 #include "modify.h"
 #include <gtest/gtest.h>
 
+#include "util.h"
+
 namespace toystl {
 
 TEST(Modify, random_shuffle) {
-
+  const int N = 10;
+  std::vector<int> vec(N);
+  std::vector<int> vec2;
+  std::generate(vec.begin(), vec.end(), UniqueNumber());
+  vec2 = vec;
+  std::srand(0);
+  std::random_shuffle(vec.begin(), vec.end());
+  std::srand(0);
+  toystl::random_shuffle(vec2.begin(), vec2.end());
+//  EXPECT_EQ(vec, vec2);
 }
 
 } /* namespace toystl */
