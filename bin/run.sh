@@ -13,4 +13,5 @@ cd ../bin
 #./find_test
 #./sort_test
 #./modify_test
-./cstring_test
+#./cstring_test
+./permutation_test
